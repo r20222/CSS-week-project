@@ -885,7 +885,7 @@ opacity: 0;
     }
     .rocket-container-for-vw.rocket-sun{
       transform:
-        translateY(calc(-120vh + 35rem + 5rem + 1rem - 5rem))
+        translateY(calc(-100vh + 35rem + 5rem + 1rem - 10rem))
         translateX(calc(-60vw + 10rem + 5rem + 3vw - 8.75rem)) 
         rotate(-60deg)
         scale(.25);
@@ -911,5 +911,24 @@ opacity: 0;
   @media screen and (max-width: 1000px){
     html{
       overflow-x: hidden;
+    }
+    .rocket-container-for-vw.rocket-sun{
+      transform:
+        translateY(calc(-100vh + 35rem + 5rem + 1rem - 12rem))
+        translateX(calc(-50vw + 10rem + 5rem + 3vw - 10.75rem)) 
+        rotate(-60deg)
+        scale(.25);
+    }
+  }
+  @media screen and (max-width: 1300px){
+    html{
+      overflow-x: hidden;
+    }
+    .rocket-container-for-vw.rocket-sun{
+      transform:
+        translateY(calc(-100vh + 35rem + 5rem + 1rem - 12rem))
+        translateX(calc(-50vw + 10rem + 5rem + 3vw - 10.75rem)) 
+        rotate(-60deg)
+        scale(.25);
     }
   }
