@@ -33,4 +33,4 @@ Bij het maken van de clip-paths onderaan de pagina en de wolken heb ik gebruik g
 
 # livelink
 
-* r20222.github.io/CSS-week-project/
+r20222.github.io/CSS-week-project/
