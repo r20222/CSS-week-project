@@ -1,0 +1,864 @@
+*{
+    margin:0;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+body{
+    width:100vw;
+    height: 500vh;
+    background: var(--body-background);
+    background-size: var(--background-size);
+    display:flex;
+    flex-direction:column;
+    overflow-x:hidden;
+    background-color: var(--background-body-color);
+    animation: var(--animation-background);
+    position:relative;
+
+    /* background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50%3B' xml:space='preserve'%3E%3Cstyle type='text/css'%3E.st1%7Bopacity:0.7%3Bfill:%23FFFFFF%3B%7D.st3%7Bopacity:0.1%3Bfill:%23FFFFFF%3B%7D%3C/style%3E%3Ccircle class='st3' cx='4' cy='14' r='1'/%3E%3Ccircle class='st3' cx='43' cy='3' r='1'/%3E%3Ccircle class='st3' cx='31' cy='30' r='2'/%3E%3Ccircle class='st3' cx='19' cy='23' r='1'/%3E%3Ccircle class='st3' cx='37' cy='22' r='1'/%3E%3Ccircle class='st3' cx='43' cy='16' r='1'/%3E%3Ccircle class='st3' cx='8' cy='45' r='1'/%3E%3Ccircle class='st3' cx='29' cy='39' r='1'/%3E%3Ccircle class='st3' cx='13' cy='37' r='1'/%3E%3Ccircle class='st3' cx='47' cy='32' r='1'/%3E%3Ccircle class='st3' cx='15' cy='4' r='2'/%3E%3Ccircle class='st3' cx='9' cy='27' r='1'/%3E%3Ccircle class='st3' cx='30' cy='9' r='1'/%3E%3Ccircle class='st3' cx='25' cy='15' r='1'/%3E%3Ccircle class='st3' cx='21' cy='45' r='2'/%3E%3Ccircle class='st3' cx='42' cy='45' r='1'/%3E%3C/svg%3E"); */
+}
+
+:root{
+  --body-background: linear-gradient(#5CC4CA 5%, #F6C456 40%,#F16116);
+  --background-body-color: black;
+  --background-size: auto;
+  --animation-background: none;
+}
+
+/* hiermee kan je aanpassingen maken voor andere kleuren voor dark-mode */
+@media (prefers-color-scheme:dark){
+  :root{
+  --body-background: url("https://www.nasa.gov/sites/default/files/thumbnails/image/stsci-h-p1821a-m-1699x20001a.png");
+  --background-body-color: gray;
+  --background-size: 250%;
+  --animation-background: moving-background 40s linear infinite;
+}
+
+@keyframes moving-background{
+  50%{
+    background-position-x: 50%;
+    background-position-y: 50%;
+  }
+}
+}
+
+/* met filter: drop shadow kan je een specifieke schaduw maken */
+
+/* clouds */
+
+.clouds{
+  width:100vw;
+  height: 10rem;
+  position:absolute;
+  background:transparent;
+  list-style: none;
+  padding-left: 0;
+  /* z-index:300; */
+  display:flex;
+  
+
+
+
+  /* visibility: hidden; */
+}
+
+.cloud1{
+  width: 45rem;
+  height: 10rem;
+  clip-path: polygon(50% 34%, 83% 12%, 100% 43%, 94% 78%, 65% 71%, 32% 100%, 24% 60%, 0 66%, 17% 12%);
+  background:lightgrey;
+  opacity:.8;
+  z-index:300;
+  transform: translateX(-20rem);
+  animation: cloudy1 19s linear infinite;
+  filter: url(#fluffy);
+}
+
+.cloud2{
+  width: 25rem;
+  height: 10rem;
+  clip-path: polygon(50% 26%, 83% 12%, 100% 43%, 95% 75%, 85% 89%, 35% 83%, 10% 93%, 0 66%, 17% 12%);
+  background: #337F7A;
+  opacity:.8;
+  z-index:300;
+  transform: translateX(100rem);
+  animation: cloudy2 22s linear infinite;
+  filter: url(#fluffy);
+}
+/* .rain{
+  width: 25rem;
+  height: calc(100vh - 2rem);
+  position: absolute;
+  background: linear-gradient(
+    to bottom left,
+    cyan 1%, transparent 1%, 
+    cyan 2%, transparent 2%, 
+    cyan 3%, transparent 3%, 
+    cyan 4%, transparent 4%,
+    cyan 5%, transparent 5%,
+    cyan 6%, transparent 6%,
+    cyan 7%, transparent 7%,
+    cyan 8%, transparent 8%,
+    cyan 9%, transparent 9%,
+    cyan 10%, transparent 10%,
+    cyan 11%, transparent 11%,
+    cyan 12%, transparent 12%,
+    cyan 13%, transparent 13%,
+    cyan 14%, transparent 14%,
+    cyan 15%, transparent 15%
+
+  ); */
+  
+  /* animation: cloudy2 22s linear infinite; */
+/* } */
+
+@keyframes cloudy2{
+  from{
+    transform: translateX(-100rem);
+  }
+  to{
+    transform: translateX(100rem);
+  }
+}
+
+@keyframes cloudy1{
+  from{
+    transform: translateX(-50rem);
+  }
+  to{
+    transform: translateX(100rem);
+  }
+}
+
+/* planeten list */
+
+.planets{
+  list-style: none;
+  width: 100vw;
+  height: 10rem;
+  background:transparent;
+  position:fixed;
+  display:flex;
+  justify-content: space-around;
+  padding-left:0;
+  margin-top:1rem;
+}
+
+.sun{
+  width: 10rem;
+  aspect-ratio: 1/1;
+  background: radial-gradient(#FDDD27 30%,#FA9A03);
+  border-radius: 50%;
+  cursor: pointer;
+  animation: sun-rays 6s linear infinite;
+}
+@keyframes sun-rays{
+  50%{
+    box-shadow: 0em 0em 1em 1em #FBB913;
+  }
+}
+.pluto{
+  width: 2rem;
+  height: 2rem;
+  background:linear-gradient(to top left, #947157, #D8A895,#947157, #D8A895, #947157 );
+  border-radius: 50%;
+  position:relative;
+  top:4rem;
+
+  transition:
+  transform 3s linear,
+  filter .5s 3s,
+  opacity .5s 4s;
+}
+.pluto-click{
+  transform:
+  /* translateY(calc(-100vh + 35rem + 5rem + 1rem - 5rem)) */
+  translateX(calc(-40vw + 25rem + 5rem + 3vw - 8.75rem)) 
+  rotate(-60deg)
+  scale(.25);
+
+filter:brightness(0);
+opacity: 0;
+}
+
+.earth{
+  width: 5rem;
+  height: 5rem;
+  background:linear-gradient(to bottom left, darkblue, #6BB355,darkblue, #6BB355, darkblue );
+  border-radius: 50%;
+  transition:
+  transform 3s linear,
+  filter .5s 3s,
+  opacity .5s 4s;
+}
+.earth-click{
+  transform:
+  /* translateY(calc(-100vh + 35rem + 5rem + 1rem - 5rem)) */
+  translateX(calc(-50vw + 15rem + 5rem + 3vw - 8.75rem)) 
+  rotate(-60deg)
+  scale(.25);
+
+filter:brightness(0);
+opacity: 0;
+}
+.jupiter{
+  width: 6.5rem;
+  height: 6.5rem;
+  position:relative;
+  top:2rem;
+  background: linear-gradient(#D98F76, #E7C07D, #D98F76, #E7C07D);
+  border-radius: 50%;
+}
+
+.saturn{
+  width: 6rem;
+  height: 6rem;
+  position:relative;
+  top:2rem;
+  background: linear-gradient(to top left, #CAA361, orange, #CAA361, orange);
+  border-radius: 50%;
+  
+}
+.rings{
+  width:140%;
+  height: 1rem;
+  background: rgba(179, 179, 70, 0.737);
+  border-radius:50%;
+  position:absolute;
+  transform: rotate(-45deg);
+  top:2.5rem;
+  left:-1.2rem ;
+}
+.ring-animation{
+  animation: rotate-rings 1s linear;
+}
+@keyframes rotate-rings{
+  100%{
+    rotate: 360deg;
+  }
+}
+.neptune{
+  width: 3rem;
+  height: 3rem;
+  background:linear-gradient(to bottom right, #D4602C, #A7643E, #D4602C);
+  border-radius: 50%;
+}
+
+.planets  li a{
+  display: block;
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+}
+
+
+
+/* raket */
+.rocket-container-for-vw{
+    width:100vw;
+    height: 35rem;
+    display: flex;
+    justify-content: center;
+    position:absolute;
+    z-index:200;
+    transition:
+      transform 3s linear,
+      filter .5s 3s,
+      opacity .5s 4s;
+    transform: translateY(8rem);
+
+
+    /* scroll animatie */
+    animation: rocket-fly 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+  
+    /* animation-iteration-count: 1;
+    animation-fill-mode: both;*/
+    /* animation: rocketShip 3s linear; */
+}
+
+/* @keyframes rocket-fly {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+body {
+  min-height: 500vh;
+}
+
+.rocket-animation{
+  transform: translateY(-40rem);
+}
+
+.rocket-container-for-vw.rocket-sun{
+  transform:
+    translateY(calc(-100vh + 35rem + 5rem + 1rem - 5rem))
+    translateX(calc(-50vw + 10rem + 5rem + 3vw - 8.75rem)) 
+    rotate(-60deg)
+    scale(.25);
+
+  filter:brightness(0);
+  opacity: 0;
+}
+
+.rocket-container{
+    width:20rem;
+    height:35rem;
+    transform:
+      translateY(0)
+      translateX(0)
+      rotate(0deg)
+      scale(0.5);
+  /*   background-color:cyan; */
+    display: flex;
+    align-items:end;
+    z-index:1000;
+    scroll-margin-top: 40rem;
+    transform-origin: center bottom;
+  }
+
+
+  .rocket2{
+    display: flex;
+    position: absolute;
+    transform:scale(0.1);
+    top:40rem;
+    left: 20rem;
+    z-index:0;
+  }
+
+  .rocket3{
+    display: flex;
+    position: absolute;
+    transform:scale(0.2);
+    top:60rem;
+    left: 50rem;
+    z-index:0;
+  }
+  .rocket4{
+    display: flex;
+    position: absolute;
+    transform:scale(0.25);
+    top:70rem;
+    left: 20rem;
+    z-index:0;
+  }
+  .rocket5{
+    display: flex;
+    position: absolute;
+    transform:scale(0.1);
+    top:85rem;
+    left: 45rem;
+    z-index:0;
+  }
+  .first-rocket, .third-rocket, .big-rocket{
+    height: 31rem;
+    width:5rem;
+    background-color:#CB5607;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    position:relative;
+  }
+  
+  
+  /* lijnen */
+  .first-rocket, .third-rocket{
+    display:flex;
+    justify-content:center;
+  }
+  .first-rocket-line, .third-rocket-line{
+    width:76%;
+    height:.7rem;
+    background-color: #A9390A;
+    position:absolute;
+    border-radius:50em;
+    top:5rem;
+  }
+  .first-rocket-line2, .third-rocket-line2{
+    width:88%;
+    height:.2rem;
+    background-color: #A9390A;
+    position:absolute;
+    border-radius:50em;
+    top:9rem;
+  }
+  .first-rocket-line3, .third-rocket-line3{
+    width:96%;
+    height:.2rem;
+    background-color: #A9390A;
+    position:absolute;
+    border-radius:50em;
+    top:12rem;
+  }
+  
+  
+  
+  
+  /* big rocket */
+  .big-rocket{
+    width: 10rem;
+    height: 32rem;
+    background-color: #A63716;
+    align-self:start;
+    display:flex;
+    align-items:end;
+    justify-content:center;
+    
+  }
+  
+  .big-rocket-nose{
+    width:2rem;
+    height:2.5rem;
+    background-color: #DEA050;
+    position:absolute;
+    top: 0rem;
+    border-radius: 50%;
+    margin-top: .2rem;
+    rotate:-90deg;
+  }
+  .big-rocket-line{
+    width: 78%;
+    height:.3rem;
+    background-color: #C34D25;
+    position:absolute;
+    top:6rem;
+    border-radius:50%;
+  }
+  .big-rocket-line-2{
+    width: 65%;
+    height:.3rem;
+    background-color: #C34D25;
+    position:absolute;
+    top:4rem;
+    border-radius:50%;
+  }
+  
+  
+  
+  
+  .third-rocket{
+    position:relative;
+    right:0;
+  }
+  
+  /* capsule met vleugels */
+  
+  .capsule{
+    width: 8rem;
+    height:25rem;
+    background:linear-gradient(#D1540C 95%, #8E2004 5%);
+    border-top-left-radius: 48%;
+    border-top-right-radius: 48%;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    bottom:-1rem;
+    
+  }
+  
+  .wing-1{
+    width:10rem;
+    height:15rem;
+    /* background-color: #A03805; */
+    border-top-left-radius: 100%;
+    position:absolute;
+    left:-10rem;
+    bottom: 1rem;
+    align-self:end;
+    background: radial-gradient(
+      circle at -2% -60%,
+    transparent 55%, #A03805 5%);
+
+    
+  }
+  .wing-2{
+    width:10rem;
+    height:15rem;
+    background-color: #A03805;
+    border-top-right-radius: 100%;
+    position:absolute;
+    right:-10rem;
+    bottom:1rem;
+    align-self:end;
+    z-index:100;
+    background: radial-gradient(
+      circle at 100% -60%,
+    transparent 55%, #A03805 5%);
+    
+  }
+  
+  .capsule-line{
+    width: 83%;
+    height:.3rem;
+    background-color: #AF3C05;
+    position:absolute;
+    top:4rem;
+    border-radius:50%;
+    margin-top:1rem;
+  }
+  
+  /* windows */
+  
+  .capsule-nose{
+    width:2.5rem;
+    height: 1.5rem;
+    background-color: #903218;
+    border-radius:50%;
+    margin-top:.3rem;
+  }
+  
+  .capsule-window{
+    width: 4rem;
+    height: 1rem;
+    background-color: #903218;
+    position:absolute;
+    top:3rem;
+    border-radius: 50%;
+  }
+  
+  /* puntjes */
+  
+  .container-dots{
+    width: 3rem;
+    height: 0.8rem;
+    position:absolute;
+    top:7rem;
+    display:flex;
+    justify-content: space-between;
+  }
+  .dot1, .dot2, .dot3{
+    height:100%;
+    width:.8rem;
+    background-color:#A52B01;
+    border-radius:50%;
+  }
+  
+  /* bubbles */
+  
+  .container-bubbles{
+    width: 1rem;
+    height: 12rem;
+    position:absolute;
+    top:10rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .bubble{
+    height: 3rem;
+    width:100%;
+    background-color: #EA8B40;
+    border-radius:50rem;
+  }
+
+
+/* smokeee */
+
+.smoke{
+  width:10rem;
+  height:10rem;
+  background:transparent;
+  z-index:500;
+  position:absolute;
+  bottom:3rem;
+  margin-left: calc(50% - 5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity:0;
+  transform: scale(0);
+  /* transition: 2s linear; */
+}
+.smoke-visible{
+  opacity:1;
+  visibility: visible;
+  /* transform: scale(3); */
+  animation: smokey 3s linear;
+}
+
+@keyframes smokey{
+  50%{
+    transform: scale(3);
+  }
+}
+.smoke1{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color:grey;
+  position:absolute;  
+  bottom: 2rem;
+}
+.smoke2{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color:grey;
+  position:absolute;
+  left: 2rem;
+}
+.smoke3{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color:grey;
+}
+
+
+/* ufo's */
+.ufo{
+  width:40rem;
+  height: 10rem;
+  background:radial-gradient(
+    circle at 50% -100%,
+    green 10%,
+    cyan 55%, grey 20%);
+  border-radius:50%;
+  display:flex;
+  justify-content: space-evenly;
+  transform:scale(0.3);
+  position: absolute;
+  transform:scale(0.1);
+  top:100rem;
+  /* left: 45rem; */
+  z-index:0;
+  animation: ufo-fly 5s linear infinite;
+}
+.ufo2{
+  width:40rem;
+  height: 10rem;
+  background:radial-gradient(
+    circle at 50% -100%,
+    green 10%,
+    cyan 55%, grey 20%);
+  border-radius:50%;
+  display:flex;
+  justify-content: space-evenly;
+  transform:scale(0.3);
+  position: absolute;
+  transform:scale(0.1);
+  top:110rem;
+  /* left: 45rem; */
+  z-index:0;
+  animation: ufo-fly 5s linear infinite;
+  animation-delay: .2s;
+}
+.ufo3{
+  width:40rem;
+  height: 10rem;
+  background:radial-gradient(
+    circle at 50% -100%,
+    green 10%,
+    cyan 55%, grey 20%);
+  border-radius:50%;
+  display:flex;
+  justify-content: space-evenly;
+  transform:scale(0.3);
+  position: absolute;
+  transform:scale(0.1);
+  top:120rem;
+  /* left: 45rem; */
+  z-index:0;
+  animation: ufo-fly 5s linear infinite;
+  animation-delay: .4s;
+}
+@keyframes ufo-fly{
+  from{
+    transform: scale(0.1) translateX(-200rem);
+  }
+  to{
+    transform:scale(0.1) translateX(800rem);
+  }
+}
+
+.light1{
+  width:4rem;
+ height:4rem;
+  background: yellow;
+  border-radius: 50%;
+  margin-top:3rem;
+  animation: colors 4s linear;
+  animation-iteration-count:infinite;
+}
+
+.light2{
+  width:4rem;
+  height:4rem;
+  background: yellow;
+  border-radius: 50%;
+  margin-top:4rem;
+  animation: colors 4s linear;
+  animation-iteration-count:infinite;
+  animation-delay: .2s;
+}
+.light3{
+  width:4rem;
+  height:4rem;
+  background: yellow;
+  border-radius: 50%;
+  margin-top:5.5rem;
+  animation: colors 4s linear;
+  animation-iteration-count:infinite;
+  animation-delay: .4s;
+}
+.light4{
+  width:4rem;
+  height: 4rem;
+  background: yellow;
+  border-radius: 50%;
+  margin-top:5.5rem;
+  animation: colors 4s linear;
+  animation-iteration-count:infinite;
+  animation-delay: .6s;
+}
+.light5{
+  width:4rem;
+  height:4rem;
+  background: yellow;
+  border-radius: 50%;
+  margin-top:4rem;
+  animation: colors 4s linear;
+  animation-iteration-count:infinite;
+  animation-delay: .8s;
+}
+.light6{
+  width:4rem;
+  height: 4rem;
+  background: yellow;
+  border-radius: 50%;
+  margin-top:3rem;
+  animation: colors 4s linear;
+  animation-iteration-count:infinite;
+  animation-delay: 1s;
+}
+
+@keyframes colors{
+  0%{
+    background:red;
+  }
+  10%{
+    background: orange;
+  }
+  20%{
+    background: yellow;
+  }
+  30%{
+    background: green;
+  }
+  40%{
+    background: blue;
+  }
+  50%{
+    background: indigo;
+  }
+  60%{
+    background: violet;
+  }
+  70%{
+    background: purple;
+  }
+  80%{
+    background: hotpink;
+  }
+  90%{
+    background: aqua;
+  }
+  100%{
+    background: marine;
+  }
+}
+
+.alien{
+  position:absolute;
+  top: 300vh;
+  transition: 2s linear;
+}
+
+.alien-click{
+  transform: rotate(360deg) scale(0);
+}
+
+  /* grasssss and bushes */
+
+  .green-grass{
+    width: 100vw;
+    height:6rem;
+    background-color: #578823;
+    position: fixed;
+    bottom:0;
+  }
+
+  .cow{
+    position:fixed;
+    bottom: 5rem;
+    left: -20%;
+    width:12rem;
+    z-index:1000;
+    animation: cow-walking 30s linear infinite;
+  }
+
+
+@keyframes cow-walking{
+  10%{
+    transform: translateX(2rem) rotate(5deg);
+  }
+  20%{
+    transform: translateX(10rem) rotate(-5deg);
+  }
+  30%{
+    transform: translateX(10rem) rotate(5deg);
+  }
+  40%{
+    transform: translateX(10rem) rotate(-5deg);
+  }
+  50%{
+    transform: translateX(10rem) rotate(5deg);
+  }
+  60%{
+    transform: translateX(30rem) rotate(-5deg);
+  }
+  70%{
+    transform: translateX(40rem) rotate(5deg);
+  }
+  100%{
+    transform: translateX(120rem) rotate(-5deg);
+  }
+}
+
+  .bushes{
+    width:100vw;
+    height: 5rem;
+    bottom:0;
+    clip-path: polygon(100% 100%, 100% 0, 93% 20%, 91% 20%, 89% 15%, 86% 5%, 84% 5%, 83% 9%, 80% 14%, 79% 17%, 77% 24%, 73% 30%, 69% 35%, 64% 30%, 62% 19%, 58% 10%, 55% 4%, 54% 8%, 51% 14%, 50% 21%, 49% 25%, 48% 28%, 46% 28%, 44% 23%, 43% 19%, 42% 15%, 40% 10%, 38% 7%, 37% 6%, 36% 14%, 36% 15%, 33% 20%, 32% 22%, 31% 25%, 29% 26%, 25% 21%, 25% 19%, 24% 9%, 23% 2%, 21% 0%, 20% 0%, 19% 2%, 16% 6%, 16% 6%, 13% 7%, 13% 8%, 12% 21%, 11% 21%, 10% 23%, 8% 28%, 7% 30%, 5% 34%, 2% 36%, 0% 39%, 0 100%);
+    background-color:darkgreen;
+    position:fixed;
+  }
+
+  /* mountains */
+
+
+  .big-mountains{
+    width: 100vw;
+    height: 15rem;
+    background-color: #232419;
+    position:fixed;
+    bottom: 0rem;
+    clip-path: polygon(0 100%, 100% 100%, 100% 16%, 94% 0, 86% 18%, 81% 1%, 75% 31%, 70% 0, 61% 7%, 56% 31%, 46% 2%, 36% 16%, 30% 4%, 23% 37%, 18% 8%, 12% 25%, 4% 9%, 0 31%);
+  }
+  .mountains{
+    width: 100vw;
+    height: 10rem;
+    background-color: #080808;
+    position:fixed;
+    bottom:0rem;
+    clip-path: polygon(0 100%, 100% 100%, 100% 16%, 90% 1%, 84% 19%, 81% 1%, 75% 19%, 68% 0%, 60% 5%, 51% 33%, 44% 1%, 34% 16%, 29% 1%, 19% 29%, 17% 6%, 12% 25%, 6% 5%, 0 31%);
+  }
+
