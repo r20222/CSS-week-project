@@ -30,3 +30,7 @@ Ik heb bij de dark mode een mooie foto van the Hubble telescoop gebruikt:
 
 Bij het maken van de clip-paths onderaan de pagina en de wolken heb ik gebruik gemaakt van:
 * https://bennettfeely.com/clippy/
+
+# livelink
+
+* r20222.github.io/CSS-week-project/
