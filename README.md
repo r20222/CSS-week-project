@@ -19,7 +19,7 @@ Bij het maken van deze pagina heb ik nieuwe dingen geleerd met CSS zoals:
 * Clip-path
 * Scroll-behavior
 
-! De website is niet responsive en is gemaakt voor de desktop versie.
+! De website is niet responsive voor alle screensizes.
 
 # inspiratie en bronnen:
 
