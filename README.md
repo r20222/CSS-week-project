@@ -19,6 +19,7 @@ Bij het maken van deze pagina heb ik nieuwe dingen geleerd met CSS zoals:
 * Clip-path
 * Scroll-behavior
 
+De website is nog niet responsive en is gemaakt voor de desktop versie.
 
 # inspiratie en bronnen:
 
